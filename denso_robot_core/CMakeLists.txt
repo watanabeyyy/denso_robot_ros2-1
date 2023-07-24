@@ -45,6 +45,10 @@ add_library(
   src/denso_variable.cpp
   src/tinyxml2.cpp)
 
+if(WIN32)
+  set_target_properties(${PROJECT_NAME} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
+
 add_executable(
   ${PROJECT_NAME}_exec
   src/denso_base.cpp

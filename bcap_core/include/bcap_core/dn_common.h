@@ -295,6 +295,7 @@ typedef struct SAFEARRAY
   uint16_t cDims;              /**< The number of dimensions  */
   uint16_t vt;                 /**< Variant type              */
   uint32_t cbElements;         /**< The size of an element    */
+  uint32_t cLocks;     //Dummy to match the number of bytes of SAFEARRAY defined in windows
   void* pvData;                /**< The pointer of array data */
   SAFEARRAYBOUND rgsabound[1]; /**< The parameters of bounds  */
 } SAFEARRAY;
@@ -306,6 +307,9 @@ typedef struct SAFEARRAY
 typedef struct VARIANT
 {
   uint16_t vt; /**< Variant type */
+  uint16_t    wReserved1;     //Dummy to match the number of bytes of VARIANT defined in windows
+  uint16_t    wReserved2;     //Dummy to match the number of bytes of VARIANT defined in windows
+  uint16_t    wReserved3;     //Dummy to match the number of bytes of VARIANT defined in windows
   union
   {
     int16_t iVal;         /**< VT_I2    */
@@ -324,6 +328,7 @@ typedef struct VARIANT
     uint64_t ullVal;      /**< VT_UI8   */
     SAFEARRAY* parray;    /**< VT_ARRAY */
   };
+  uint16_t decVal;   //Dummy to match the number of bytes of VARIANT defined in windows
 } VARIANT;
 
 #endif /* __oaidl_h__ */

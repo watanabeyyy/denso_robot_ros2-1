@@ -42,7 +42,7 @@ public:
   void Start();
   void Stop();
 
-  HRESULT ChangeMode(int mode, bool service = false);
+  HRESULT ChangeMode(int index, int mode, bool service = false);
   int get_Mode() const
   {
     return m_mode;

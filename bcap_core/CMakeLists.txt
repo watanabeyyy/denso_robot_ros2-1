@@ -19,7 +19,9 @@ endif()
 # Options
 option  (_DN_USE_VARIANT_API "Use VARIANT API" ON)
 option  (_DN_USE_BSTR_API "Use BSTR API" ON)
-option  (_USE_LINUX_API "Use Linux API" ON)
+if(NOT WIN32)
+  option  (_USE_LINUX_API      "Use Linux API"   ON)
+endif(NOT WIN32)
 message (STATUS "_USE_LINUX_API=${_USE_LINUX_API}")
 
 # Add definitions
@@ -77,6 +79,10 @@ if(_USE_LINUX_API)
 # endif(_USE_LINUX_API)
 endif()
 
+if(WIN32)
+  set_target_properties(bcap_client PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
+
 # bcap_server library
 add_library(
   bcap_server SHARED
@@ -100,6 +106,10 @@ if(_USE_LINUX_API)
 # endif(_USE_LINUX_API)
 endif()
 
+if(WIN32)
+  set_target_properties(bcap_server PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
+
 # rac_string library
 add_library(
   rac_string SHARED
@@ -110,6 +120,10 @@ target_include_directories(
   rac_string PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/RACString>"
   "$<INSTALL_INTERFACE:include/${PROJECT_NAME}/RACString>")
+
+if(WIN32)
+  set_target_properties(rac_string PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
 
 # tpcomm library
 add_library(
@@ -133,6 +147,9 @@ if(_USE_LINUX_API)
 # endif(_USE_LINUX_API)
 endif()
 
+if(WIN32)
+  set_target_properties(tpcomm PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
 
 #=============
 # Export

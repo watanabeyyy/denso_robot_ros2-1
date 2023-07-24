@@ -158,12 +158,12 @@ void DensoRobotCore::Stop()
   m_ctrl->StopService();
 }
 
-HRESULT DensoRobotCore::ChangeMode(int mode, bool service)
+HRESULT DensoRobotCore::ChangeMode(int index, int mode, bool service)
 {
   m_ctrl->StopService();
 
   DensoRobot_Ptr pRob;
-  HRESULT hr = m_ctrl->get_Robot(0, &pRob);
+  HRESULT hr = m_ctrl->get_Robot(index, &pRob);
   if (SUCCEEDED(hr)) {
     switch (m_ctrlType) {
       case 8:

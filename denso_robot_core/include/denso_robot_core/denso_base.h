@@ -25,6 +25,11 @@
 #ifndef DENSO_BASE_H
 #define DENSO_BASE_H
 
+#if defined _WIN32
+  #define strncasecmp _strnicmp
+  #define strcasecmp _stricmp
+#endif
+
 #include "denso_robot_core/visibility_control.h"
 #include "denso_robot_core/visibility_control.h"
 #include "denso_robot_core/tinyxml2.h"

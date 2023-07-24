@@ -39,6 +39,10 @@ target_include_directories(
 
 target_link_libraries(${PROJECT_NAME} ${bcap_core_LIBRARIES})
 
+if(WIN32)
+  set_target_properties(${PROJECT_NAME} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+endif()
+
 add_executable(${PROJECT_NAME}_exec
   src/${PROJECT_NAME}.cpp)
 
